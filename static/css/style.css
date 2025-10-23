@@ -1,2 +1,195 @@
-/* Ejemplo mínimo */
-:root { scroll-behavior: smooth; }
+/* ======= Tipografías ======= */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Plus+Jakarta+Sans:wght@500;700&display=swap");
+
+/* ======= Tokens (Dark Theme) ======= */
+:root{
+  --bg: #0f1722;           /* fondo base */
+  --surface: #142231;      /* tarjetas */
+  --text: #e8eef6;         /* texto principal */
+  --muted: #a6b3c3;        /* texto secundario */
+  --line: rgba(255,255,255,.10);
+
+  --brand: #6ea8ff;        /* degradado 1 */
+  --brand-2: #bb6bd9;      /* degradado 2 */
+  --brand-3: #ff86c8;      /* degradado 3 */
+
+  --blue: #3b82f6;
+  --violet: #a855f7;
+  --mint: #34d399;
+
+  --radius-xl: 24px;
+  --shadow-1: 0 8px 30px -12px rgba(0,0,0,.45);
+  --shadow-2: 0 12px 50px -18px rgba(0,0,0,.6);
+}
+
+/* ======= Reset mínimo útil ======= */
+*{ box-sizing: border-box }
+html{ scroll-behavior:smooth }
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection{ background: color-mix(in lab, var(--brand) 30%, transparent); color: var(--text) }
+
+/* Titulares un poco más “marca” */
+h1,h2,h3{
+  font-family: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+  letter-spacing: .2px;
+}
+
+/* ======= Helper: degradado del título ======= */
+.text-gradient{
+  background: linear-gradient(90deg,var(--brand) 0%, var(--brand-2) 55%, var(--brand-3) 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+
+/* ======= Relaciones de aspecto usadas en el template ======= */
+.ratio-21-9{ position:relative }
+.ratio-21-9::before{ content:""; display:block; padding-top:42% } /* ~21:9 */
+.ratio-21-9 > .fill{ position:absolute; inset:0 }
+
+/* ======= Header sticky: más “glass” y feedback al hover ======= */
+header.sticky{
+  backdrop-filter: saturate(120%) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+header a:hover{ opacity:.95 }
+
+/* ======= Links con subrayado animado (solo nav/topbar) ======= */
+header nav a{
+  position: relative;
+  transition: opacity .18s ease;
+}
+header nav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
+  background: linear-gradient(90deg,transparent, var(--brand), transparent);
+  transform: scaleX(0); transform-origin:center; transition: transform .25s ease;
+}
+header nav a:hover::after{ transform: scaleX(1) }
+
+/* ======= Cards (juegos/hardware/beneficios) ======= */
+#beneficios article,
+#juegos article,
+#hardware article{
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-1);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  will-change: transform, box-shadow;
+}
+#beneficios article:hover,
+#juegos article:hover,
+#hardware article:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+  border-color: rgba(255,255,255,.14);
+}
+
+/* Imágenes dentro de cards: zoom sutil */
+#juegos article .w-full > img,
+#hardware article .w-full > img{
+  transition: transform .5s cubic-bezier(.2,.7,.2,1);
+  transform-origin: center;
+}
+#juegos article:hover img,
+#hardware article:hover img{
+  transform: scale(1.03);
+}
+
+/* Microtipografía en secundarios */
+#juegos p, #hardware p, #beneficios p{ color: var(--muted) }
+
+/* ======= Beneficios: icon pills más “candy” ======= */
+#beneficios article > span{
+  box-shadow: 0 6px 18px -8px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+/* ======= Botones primarios/secundarios (por si los usas fuera de Tailwind) ======= */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:.5rem; padding:.9rem 1.2rem; border-radius:16px; border:1px solid transparent;
+  font-weight: 700; line-height:1; cursor:pointer;
+  transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
+}
+.btn:active{ transform: translateY(1px) }
+.btn--primary{ background:#fff; color:var(--bg) }
+.btn--primary:hover{ box-shadow: 0 10px 28px -12px rgba(255,255,255,.25) }
+.btn--ghost{
+  background: rgba(255,255,255,.08); color:#fff; border-color: var(--line)
+}
+.btn--ghost:hover{ background: rgba(255,255,255,.12) }
+
+/* ======= Inputs newsletter ======= */
+input[type="email"]{
+  background: rgba(0,0,0,.4);
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 16px;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+input[type="email"]::placeholder{ color: color-mix(in lab, var(--text) 55%, black) }
+input[type="email"]:focus{
+  border-color: color-mix(in lab, var(--brand) 55%, white);
+  box-shadow: 0 0 0 4px color-mix(in lab, var(--brand) 22%, transparent);
+  background: rgba(0,0,0,.5);
+}
+
+/* ======= Carrusel: pulidos ======= */
+#carousel{ border-radius: var(--radius-xl) }
+#carousel .slide{ opacity:0; pointer-events:none; will-change: opacity }
+#carousel .slide[aria-hidden="false"]{ opacity:1; pointer-events:auto }
+#carousel .prev, #carousel .next{
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,.2);
+  transition: background-color .15s ease, transform .15s ease, border-color .15s ease;
+}
+#carousel .prev:hover, #carousel .next:hover{
+  background: rgba(0,0,0,.55);
+  border-color: rgba(255,255,255,.35);
+  transform: scale(1.02);
+}
+/* dots */
+#carousel .dots button{
+  width:10px; height:10px; border-radius: 999px;
+  background: rgba(255,255,255,.45);
+  transition: width .25s ease, background-color .25s ease, transform .25s ease;
+}
+#carousel .dots button[aria-current="true"]{
+  width:28px; background:#fff;
+}
+
+/* ======= Hover “shine” para imágenes del hero (sutil) ======= */
+@keyframes shine {
+  from { transform: translateX(-100%) }
+  to   { transform: translateX(200%) }
+}
+#hero .ratio-21-9 .fill::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.12) 22%, transparent 44%);
+  transform: translateX(-150%); mix-blend-mode: screen; opacity:.0;
+  transition: opacity .3s ease;
+}
+#hero:hover .ratio-21-9 .fill::after{
+  opacity:.5; animation: shine 1.6s linear;
+}
+
+/* ======= Focus visible accesible ======= */
+:focus-visible{
+  outline: 3px solid color-mix(in lab, var(--brand) 60%, white);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ======= Motion safe / reduce ======= */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none!important; transition: none!important }
+}
+
+/* ======= Pequeñas utilidades ======= */
+.hr-soft{ border-color: var(--line) }
+.max-w-6xl{ max-width: 72rem } /* por si usas markup sin Tailwind build */
