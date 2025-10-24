@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
   <title>{% block title %}Gamerland – Landing{% endblock %}</title>
   <style>
     :root{
@@ -109,6 +110,30 @@
   </footer>
 
   <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+=======
+  <title>{% block title %}Gamerland — Landing{% endblock %}</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- (Opcional) tu CSS -->
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+  <style>
+    /* utilidades para el hero */
+    .text-gradient{
+      background: linear-gradient(90deg,#6ea8ff 0%, #bb6bd9 55%, #ff86c8 100%);
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .ratio-21-9{ position:relative; }
+    .ratio-21-9::before{ content:""; display:block; padding-top:42%; } /* aprox 21:9 */
+    .ratio-21-9 > .ratio-fill{ position:absolute; inset:0; }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="min-h-screen bg-[#0f1722] text-[#e8eef6]">
+  {% block content %}{% endblock %}
+>>>>>>> gall
   {% block extra_js %}{% endblock %}
 </body>
 </html>

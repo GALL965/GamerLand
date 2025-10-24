@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Gamerland — Presentación{% endblock %}
+<<<<<<< HEAD
 
 {% block content %}
 
@@ -135,4 +136,256 @@
   <p>[Formulario simple de suscripción irá aquí]</p>
 </section>
 
+=======
+{% block content %}
+
+<!-- TOPBAR -->
+<header class="sticky top-0 z-40 bg-[#0f1722]/95 backdrop-blur border-b border-white/10">
+  <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3">
+      <span class="w-6 h-6 rounded-lg bg-blue-500 inline-block"></span>
+      <span class="font-extrabold tracking-wide">GAMERLAND</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-sm text-white/90">
+      <a href="#juegos" class="hover:text-white">Juegos</a>
+      <a href="#hardware" class="hover:text-white">Hardware</a>
+      <a href="#beneficios" class="hover:text-white">Beneficios</a>
+      <a href="#comunidad" class="hover:text-white">Comunidad</a>
+      <a href="#contacto" class="hover:text-white">Contacto</a>
+    </div>
+
+    <a href="#newsletter"
+       class="ml-6 inline-flex items-center gap-2 rounded-2xl bg-white text-[#0f1722] font-semibold px-4 py-2 shadow">
+      Únete gratis
+    </a>
+  </nav>
+</header>
+
+<main class="max-w-6xl mx-auto px-4">
+
+  <!-- HERO / CARRUSEL -->
+  <section id="hero" class="my-5">
+    <div id="carousel" class="relative rounded-3xl overflow-hidden shadow-xl bg-slate-900">
+
+      <div class="ratio-21-9">
+        <div class="ratio-fill">
+
+          <!-- SLIDE 1 -->
+          <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="0" aria-hidden="true">
+            <img src="https://cdn.elpopular.mx/notas/comunidad/2024/08/30/dia-del-gamer-como-vivir-de-los-videojuegos/2d1b0cddcbc55b1b981e89ef8bf92895.jpg"
+                 alt="Comunidad" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/45"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 text-white">
+              <span class="self-start px-3 py-1 rounded-lg bg-emerald-400 text-black font-extrabold">COMUNIDAD</span>
+              <h1 class="mt-3 font-extrabold leading-tight text-[clamp(28px,4vw,56px)]">
+                Únete a nuestra comunidad
+              </h1>
+              <p class="mt-1 text-white/95 text-[clamp(14px,1.8vw,20px)]">Eventos, torneos y acceso temprano a betas.</p>
+              <div class="mt-4 flex gap-3">
+                <a href="#newsletter" class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Unirme gratis</a>
+                <a href="#comunidad" class="px-5 py-3 rounded-xl border border-white/20 text-white bg-white/10 hover:bg-white/15">Ver agenda</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- SLIDE 2 -->
+          <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="1" aria-hidden="true">
+            <img src="https://www.zonapcera.com/wp-content/uploads/2025/07/Lo-mejor-2024.webp"
+                 alt="Juegos" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/45"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 text-white">
+              <span class="self-start px-3 py-1 rounded-lg bg-blue-500 font-extrabold">JUEGOS</span>
+              <h2 class="mt-3 font-extrabold leading-tight text-[clamp(26px,3.6vw,50px)]">
+                Lanzamientos y selecciones AAA
+              </h2>
+            </div>
+          </article>
+
+          <!-- SLIDE 3 -->
+          <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="2" aria-hidden="true">
+            <img src="https://www.asus.com/campaign/powered-by-asus/upload/scenario/20250320035129_pic0.jpg"
+                 alt="Hardware" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/45"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8 text-white">
+              <span class="self-start px-3 py-1 rounded-lg bg-fuchsia-500 font-extrabold">HARDWARE</span>
+              <h2 class="mt-3 font-extrabold leading-tight text-[clamp(26px,3.6vw,50px)]">
+                Benchmarks reales y setup de élite
+              </h2>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Flechas -->
+      <button class="prev absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 text-white text-xl
+                     grid place-items-center hover:bg-black/55" aria-label="Anterior">‹</button>
+      <button class="next absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 text-white text-xl
+                     grid place-items-center hover:bg-black/55" aria-label="Siguiente">›</button>
+
+      <!-- Dots -->
+      <div class="dots absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2"></div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section id="beneficios" class="pt-6">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-4">Por qué Gamerland</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6 shadow-lg">
+        <span class="w-7 h-7 rounded-lg bg-blue-500"></span>
+        <div>
+          <h3 class="font-bold text-lg text-white">Catálogo AAA</h3>
+          <p class="text-white/70 text-sm">Lanzamientos y clásicos con curaduría experta y reseñas de la comunidad.</p>
+        </div>
+      </article>
+      <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6 shadow-lg">
+        <span class="w-7 h-7 rounded-lg bg-fuchsia-500"></span>
+        <div>
+          <h3 class="font-bold text-lg text-white">Hardware de élite</h3>
+          <p class="text-white/70 text-sm">GPUs, laptops y periféricos probados con benchmarks reales.</p>
+        </div>
+      </article>
+      <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6 shadow-lg">
+        <span class="w-7 h-7 rounded-lg bg-emerald-400"></span>
+        <div>
+          <h3 class="font-bold text-lg text-white">Comunidad & soporte</h3>
+          <p class="text-white/70 text-sm">Eventos, guías y asistencia 24/7 para sacar el máximo a tu setup.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- JUEGOS -->
+  <section id="juegos" class="pt-10">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl md:text-3xl font-extrabold">Juegos destacados</h2>
+      <a href="#" class="text-sm text-white/80 hover:text-white">Ver todos →</a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {% for game in "123"|make_list %}
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 shadow-lg">
+        <div class="w-full bg-[#0b1320]" style="aspect-ratio:16/9;"></div>
+        <div class="p-5">
+          <h3 class="font-extrabold">Título del juego {{ forloop.counter }}</h3>
+          <p class="text-white/70 text-sm">Descripción corta. [placeholder]</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- HARDWARE -->
+  <section id="hardware" class="pt-10">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl md:text-3xl font-extrabold">Hardware destacado</h2>
+      <a href="#" class="text-sm text-white/80 hover:text-white">Ver todo →</a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {% for hw in "123"|make_list %}
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 shadow-lg">
+        <div class="w-full bg-[#0b1320]" style="aspect-ratio:16/9;"></div>
+        <div class="p-5">
+          <h3 class="font-extrabold">Producto {{ forloop.counter }}</h3>
+          <p class="text-white/70 text-sm">Especificación breve. [placeholder]</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- COMUNIDAD -->
+  <section id="comunidad" class="pt-10">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Comunidad</h2>
+    <p class="text-white/70">[Aquí irá info de eventos, torneos, betas y enlaces a redes]</p>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter" class="pt-10 pb-14">
+    <h2 class="text-2xl md:text-3xl font-extrabold mb-3">Únete a Gamerland</h2>
+    <p class="text-white/70 mb-4">[Formulario simple de suscripción irá aquí]</p>
+    <form action="." method="post" class="flex flex-col sm:flex-row gap-3 max-w-xl">
+      {% csrf_token %}
+      <input type="email" name="email" placeholder="Tu correo"
+             class="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 outline-none"
+             required>
+      <button class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Suscribirme</button>
+    </form>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contacto" class="border-t border-white/10 mt-8">
+  <div class="max-w-6xl mx-auto px-4 py-8 text-sm text-white/60 text-center">
+    © {{ now|date:"Y" }} Gamerland — Landing de presentación
+  </div>
+</footer>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+  const root = document.querySelector('#carousel');
+  if(!root) return;
+
+  const slides = Array.from(root.querySelectorAll('.slide'));
+  const prevBtn = root.querySelector('.prev');
+  const nextBtn = root.querySelector('.next');
+  const dotsBox = root.querySelector('.dots');
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'w-2 h-2 rounded-full bg-white/50 aria-[current=true]:w-7 aria-[current=true]:bg-white transition-all';
+    dot.setAttribute('aria-label', 'Ir al slide ' + (i+1));
+    dot.addEventListener('click', () => go(i));
+    dotsBox.appendChild(dot);
+  });
+
+  let i = 0;
+  let timer = null;
+  const D = 5500;
+
+  function render(){
+    slides.forEach((el, idx) => {
+      const active = idx === i;
+      el.style.opacity = active ? 1 : 0;
+      el.style.pointerEvents = active ? 'auto' : 'none';
+      el.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+    dotsBox.querySelectorAll('button').forEach((d, idx) => {
+      d.setAttribute('aria-current', idx === i ? 'true' : 'false');
+    });
+  }
+
+  function go(n){ i = (n + slides.length) % slides.length; render(); restart(); }
+  function next(){ go(i+1); }
+  function prev(){ go(i-1); }
+  function start(){ timer = setInterval(next, D); }
+  function stop(){ clearInterval(timer); timer = null; }
+  function restart(){ stop(); start(); }
+
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  window.addEventListener('keydown', (e)=>{ if(e.key==='ArrowRight') next(); if(e.key==='ArrowLeft') prev(); });
+
+  let x0 = null;
+  root.addEventListener('touchstart', e => x0 = e.touches[0].clientX, {passive:true});
+  root.addEventListener('touchend', e => {
+    if(x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if(Math.abs(dx) > 50) (dx < 0 ? next() : prev());
+    x0 = null;
+  }, {passive:true});
+
+  render(); start();
+})();
+</script>
+>>>>>>> gall
 {% endblock %}
