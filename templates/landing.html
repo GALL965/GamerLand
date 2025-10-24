@@ -1,51 +1,138 @@
 {% extends "base.html" %}
-{% block title %}Bienvenido{% endblock %}
+{% block title %}Gamerland — Presentación{% endblock %}
+
 {% block content %}
-<header class="py-6">
-  <nav class="max-w-6xl mx-auto flex items-center justify-between px-4">
-    <div class="font-bold text-xl">MiMarca</div>
-    <a href="#contacto" class="px-4 py-2 rounded bg-black text-white">Contáctanos</a>
-  </nav>
-</header>
 
-<section class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center px-4 py-16">
-  <div>
-    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-      Tu solución, explicada en una página ✨
-    </h1>
-    <p class="mt-4 text-lg text-gray-600">
-      Beneficio claro 1 · Beneficio claro 2 · Llamado a la acción
-    </p>
-    <a href="#contacto" class="inline-block mt-6 px-6 py-3 rounded bg-indigo-600 text-white">
-      ¡Quiero saber más!
-    </a>
-  </div>
-  <img src="https://picsum.photos/800/500" alt="mockup" class="rounded-lg shadow">
-</section>
-
-<section class="bg-white border-t">
-  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-4 py-14">
-    <div><h3 class="font-semibold text-xl">Rápido</h3><p class="text-gray-600 mt-2">Texto breve.</p></div>
-    <div><h3 class="font-semibold text-xl">Seguro</h3><p class="text-gray-600 mt-2">Texto breve.</p></div>
-    <div><h3 class="font-semibold text-xl">Escalable</h3><p class="text-gray-600 mt-2">Texto breve.</p></div>
+<!-- HERO -->
+<section id="hero" class="hero">
+  <h1>Gamerland — Plataforma de videojuegos y hardware</h1>
+  <p>[Aquí irá un carrusel con 2–3 slides: Juego destacado · Hardware nuevo · Comunidad/Playtest]</p>
+  <div class="links">
+    <a href="#newsletter">Únete gratis</a>
+    <a href="#juegos">Ver lanzamientos</a>
   </div>
 </section>
 
-<section id="contacto" class="max-w-2xl mx-auto px-4 py-16">
-  <h2 class="text-2xl font-bold mb-4">Contáctanos</h2>
-  <form method="post" action="." class="grid gap-4">
-    {% csrf_token %}
-    <input name="nombre" placeholder="Nombre" class="border rounded p-3" required>
-    <input type="email" name="email" placeholder="Email" class="border rounded p-3" required>
-    <textarea name="mensaje" placeholder="Mensaje" class="border rounded p-3" rows="4"></textarea>
-    <button class="px-5 py-3 rounded bg-black text-white">Enviar</button>
-  </form>
-  {% if request.GET.ok %}
-    <p class="mt-3 text-green-700">¡Gracias! Te contactaremos pronto.</p>
-  {% endif %}
+<hr />
+
+<!-- BENEFICIOS (3 tarjetas en grilla como la 1ª imagen) -->
+<section id="beneficios">
+  <div class="section-head">
+    <h2>Por qué Gamerland</h2>
+    <span></span>
+  </div>
+
+  <div class="grid-3 cards">
+    <article class="card feature">
+      <span class="swatch" style="background:#3b82f6"></span>
+      <div>
+        <h3>Catálogo AAA</h3>
+        <p>Lanzamientos y clásicos con curaduría experta y reseñas de la comunidad.</p>
+      </div>
+    </article>
+
+    <article class="card feature">
+      <span class="swatch" style="background:#a855f7"></span>
+      <div>
+        <h3>Hardware de élite</h3>
+        <p>GPUs, laptops y periféricos probados con benchmarks reales.</p>
+      </div>
+    </article>
+
+    <article class="card feature">
+      <span class="swatch" style="background:#34d399"></span>
+      <div>
+        <h3>Comunidad & soporte</h3>
+        <p>Eventos, guías y asistencia 24/7 para sacar el máximo a tu setup.</p>
+      </div>
+    </article>
+  </div>
 </section>
 
-<footer class="py-10 text-center text-sm text-gray-500">
-  © {{ now|date:"Y" }} MiMarca. Todos los derechos reservados.
-</footer>
+<!-- JUEGOS DESTACADOS (grid 3 con media arriba y texto abajo) -->
+<section id="juegos" class="catalog">
+  <div class="section-head">
+    <h2>Juegos destacados</h2>
+    <a href="#">Ver todos →</a>
+  </div>
+
+  <div class="grid-3 cards">
+    <article class="card">
+      <div class="media" aria-hidden="true"></div>
+      <div class="card-body">
+        <h3 class="card-title">HALO: Master Chief Collection</h3>
+        <p class="card-text">Shooter futurista. [placeholder]</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media" aria-hidden="true"></div>
+      <div class="card-body">
+        <h3 class="card-title">Guardians: Nova</h3>
+        <p class="card-text">Aventura espacial narrativa. [placeholder]</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media" aria-hidden="true"></div>
+      <div class="card-body">
+        <h3 class="card-title">Skyrim</h3>
+        <p class="card-text">RPG de mundo abierto. [placeholder]</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- HARDWARE DESTACADO (mismo patrón de grid 3) -->
+<section id="hardware" class="catalog">
+  <div class="section-head">
+    <h2>Hardware destacado</h2>
+    <a href="#">Ver todo →</a>
+  </div>
+
+  <div class="grid-3 cards">
+    <article class="card">
+      <div class="media" aria-hidden="true"></div>
+      <div class="card-body">
+        <h3 class="card-title">RTX 5080</h3>
+        <p class="card-text">DLSS 4 · 16GB. [placeholder]</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media" aria-hidden="true"></div>
+      <div class="card-body">
+        <h3 class="card-title">Laptop Gamer 15.6"</h3>
+        <p class="card-text">i9 · RTX 4070 · 32GB RAM. [placeholder]</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="media" aria-hidden="true"></div>
+      <div class="card-body">
+        <h3 class="card-title">Teclado Mecánico RGB</h3>
+        <p class="card-text">Switches hot-swap. [placeholder]</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- COMUNIDAD -->
+<section id="comunidad">
+  <div class="section-head">
+    <h2>Comunidad</h2>
+    <span></span>
+  </div>
+  <p>[Aquí irá info de eventos, torneos, betas y enlaces a redes]</p>
+</section>
+
+<!-- NEWSLETTER / CTA -->
+<section id="newsletter">
+  <div class="section-head">
+    <h2>Únete a Gamerland</h2>
+    <span></span>
+  </div>
+  <p>[Formulario simple de suscripción irá aquí]</p>
+</section>
+
 {% endblock %}
