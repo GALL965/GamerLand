@@ -4,137 +4,378 @@
 
 {% block content %}
 
-<!-- HERO -->
-<section id="hero" class="hero">
-  <h1>Gamerland — Plataforma de videojuegos y hardware</h1>
-  <p>[Aquí irá un carrusel con 2–3 slides: Juego destacado · Hardware nuevo · Comunidad/Playtest]</p>
-  <div class="links">
-    <a href="#newsletter">Únete gratis</a>
-    <a href="#juegos">Ver lanzamientos</a>
-  </div>
-</section>
+<!-- TOPBAR -->
+<header class="sticky top-0 z-40 bg-[#0f1722]/95 backdrop-blur border-b border-white/10">
+  <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3">
+      <span class="inline-grid place-items-center w-7 h-7 rounded-xl shadow ring-4 ring-white/10 floaty"
+            style="background:linear-gradient(135deg,#5aa2ff 0%,#bb6bd9 60%,#ff86c8 100%);">
+        <svg viewBox="0 0 24 24" class="w-4 h-4 text-white" fill="none" stroke="currentColor"
+             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 15l3-3h8l3 3"/>
+          <circle cx="9" cy="12" r="0.6"/>
+          <circle cx="15" cy="12" r="0.6"/>
+          <path d="M8 9h2M9 8v2M14.5 9.5h0.01M16.5 11.5h0.01"/>
+        </svg>
+      </span>
+      <span class="font-extrabold tracking-wide">GAMERLAND</span>
+    </a>
 
-<hr />
+    <div class="hidden md:flex items-center gap-8 text-sm text-white/90">
+      <a href="#juegos" class="hover:text-white">Juegos</a>
+      <a href="#hardware" class="hover:text-white">Hardware</a>
+      <a href="#beneficios" class="hover:text-white">Beneficios</a>
+      <a href="#comunidad" class="hover:text-white">Comunidad</a>
+      <a href="#comentarios" class="hover:text-white">Comentarios</a>
+      <a href="#contacto" class="hover:text-white">Contacto</a>
+    </div>
 
-<!-- BENEFICIOS (3 tarjetas en grilla como la 1ª imagen) -->
-<section id="beneficios">
-  <div class="section-head">
-    <h2>Por qué Gamerland</h2>
-    <span></span>
-  </div>
+    <a href="#newsletter"
+       class="ml-6 inline-flex items-center gap-2 rounded-2xl bg-white text-[#0f1722] font-semibold px-4 py-2 shadow">
+      Únete gratis
+    </a>
+  </nav>
+</header>
 
-  <div class="grid-3 cards">
-    <article class="card feature">
-      <span class="swatch" style="background:#3b82f6"></span>
-      <div>
-        <h3>Catálogo AAA</h3>
-        <p>Lanzamientos y clásicos con curaduría experta y reseñas de la comunidad.</p>
+<main class="max-w-6xl mx-auto px-4">
+
+  <!-- HERO / CARRUSEL -->
+  <section id="hero" class="my-5" data-anim="fade-scale">
+    <div id="carousel" class="relative rounded-3xl overflow-hidden shadow-xl bg-slate-900">
+      <div class="ratio-21-9">
+        <div class="fill will-parallax">
+
+          <!-- SLIDE 1 -->
+          <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="0" aria-hidden="true">
+            <img
+              src="https://cdn.elpopular.mx/notas/comunidad/2024/08/30/dia-del-gamer-como-vivir-de-los-videojuegos/2d1b0cddcbc55b1b981e89ef8bf92895.jpg"
+              alt="Comunidad Gamerland"
+              class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/45"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+              <span class="self-start px-3 py-1 rounded-lg bg-emerald-400 text-[#0b1320] font-extrabold">COMUNIDAD</span>
+              <h1 class="mt-3 text-white font-extrabold leading-tight text-[clamp(28px,4vw,56px)]">
+                Únete a <span class="text-gradient">Gamerland Play</span>
+              </h1>
+              <p class="mt-1 text-white/95 text-[clamp(14px,1.8vw,20px)]">Eventos, torneos y acceso temprano a betas.</p>
+              <div class="mt-4 flex gap-3">
+                <a href="#newsletter" class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Unirme gratis</a>
+                <a href="#comunidad" class="px-5 py-3 rounded-xl border border-white/20 text-white bg-white/10 hover:bg-white/15">Ver agenda</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- SLIDE 2 (cerrado correctamente) -->
+          <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="1" aria-hidden="true">
+            <img
+              src="https://www.zonapcera.com/wp-content/uploads/2025/07/Lo-mejor-2024.webp"
+              alt="Juegos destacados"
+              class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/45"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+              <span class="self-start px-3 py-1 rounded-lg bg-blue-500 text-white font-extrabold">JUEGOS</span>
+              <h2 class="mt-3 text-white font-extrabold leading-tight text-[clamp(26px,3.6vw,50px)]">
+                Lanzamientos y <span class="text-gradient">selecciones AAA</span>
+              </h2>
+              <p class="mt-1 text-white/95 text-[clamp(14px,1.8vw,20px)]">Descubre lo mejor de cada género.</p>
+              <div class="mt-4 flex gap-3">
+                <a href="#juegos" class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Ver lanzamientos</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- SLIDE 3 -->
+          <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="2" aria-hidden="true">
+            <img
+              src="https://www.asus.com/campaign/powered-by-asus/upload/scenario/20250320035129_pic0.jpg"
+              alt="Hardware probado"
+              class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/45"></div>
+            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+              <span class="self-start px-3 py-1 rounded-lg bg-fuchsia-500 text-white font-extrabold">HARDWARE</span>
+              <h2 class="mt-3 text-white font-extrabold leading-tight text-[clamp(26px,3.6vw,50px)]">
+                Benchmarks reales y <span class="text-gradient">setup de élite</span>
+              </h2>
+              <p class="mt-1 text-white/95 text-[clamp(14px,1.8vw,20px)]">GPUs, laptops y periféricos probados.</p>
+              <div class="mt-4 flex gap-3">
+                <a href="#hardware" class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Ver catálogo</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
       </div>
-    </article>
 
-    <article class="card feature">
-      <span class="swatch" style="background:#a855f7"></span>
-      <div>
-        <h3>Hardware de élite</h3>
-        <p>GPUs, laptops y periféricos probados con benchmarks reales.</p>
-      </div>
-    </article>
+      <!-- Flechas -->
+      <button class="prev absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 text-white text-xl
+                     grid place-items-center hover:bg-black/55" aria-label="Anterior">‹</button>
+      <button class="next absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 text-white text-xl
+                     grid place-items-center hover:bg-black/55" aria-label="Siguiente">›</button>
 
-    <article class="card feature">
-      <span class="swatch" style="background:#34d399"></span>
-      <div>
-        <h3>Comunidad & soporte</h3>
-        <p>Eventos, guías y asistencia 24/7 para sacar el máximo a tu setup.</p>
+      <!-- Dots -->
+      <div class="dots absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2"></div>
+    </div>
+  </section>
+
+  <hr class="border-white/10">
+
+  <!-- BENEFICIOS -->
+  <section id="beneficios" class="pt-6 scroll-mt-28" data-anim="fade-up">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl md:text-3xl font-extrabold">Por qué Gamerland</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6" data-anim="fade-right">
+        <span class="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-blue-500/90 ring-4 ring-blue-500/15 shadow-sm">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H11v14H5.5A2.5 2.5 0 0 1 3 15.5v-9Z"/>
+            <path d="M21 6.5A2.5 2.5 0 0 0 18.5 4H13v14h5.5A2.5 2.5 0 0 0 21 15.5v-9Z"/>
+          </svg>
+        </span>
+        <div>
+          <h3 class="font-bold text-lg text-white">Catálogo AAA</h3>
+          <p class="text-white/70 text-sm">Lanzamientos y clásicos con curaduría experta y reseñas de la comunidad.</p>
+        </div>
+      </article>
+
+      <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
+        <span class="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-fuchsia-500/90 ring-4 ring-fuchsia-500/15 shadow-sm">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="7" y="7" width="10" height="10" rx="2"/>
+            <path d="M4 10h3M4 14h3M17 10h3M17 14h3M10 4v3M14 4v3M10 17v3M14 17v3"/>
+          </svg>
+        </span>
+        <div>
+          <h3 class="font-bold text-lg text-white">Hardware de élite</h3>
+          <p class="text-white/70 text-sm">GPUs, laptops y periféricos probados con benchmarks reales.</p>
+        </div>
+      </article>
+
+      <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6" data-anim="fade-left">
+        <span class="inline-flex items-center justify-center w-8 h-8 rounded-XL bg-emerald-400/90 ring-4 ring-emerald-400/15 shadow-sm">
+          <svg viewBox="0 0 24 24" class="w-5 h-5 text-[#0b1320]" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="16.5" cy="8.5" r="2.5"/>
+            <path d="M7 15a4 4 0 1 1 6.9 3H6a3 3 0 0 1-3-3v-1a5 5 0 1 1 8.9 3"/>
+            <path d="M21 20v-1a4 4 0 0 0-4-4h-1"/>
+          </svg>
+        </span>
+        <div>
+          <h3 class="font-bold text-lg text-white">Comunidad & soporte</h3>
+          <p class="text-white/70 text-sm">Eventos, guías y asistencia 24/7 para sacar el máximo a tu setup.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- JUEGOS -->
+  <section id="juegos" class="pt-10 scroll-mt-28" data-anim="fade-up">
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-2xl md:text-3xl font-extrabold">Juegos destacados</h2>
+      <a href="#" class="text-sm text-white/80 hover:text-white">Ver todos →</a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh8KU8u29Yo80xrEm39bov5gsL0FgAw2xyHA&s"
+               alt="God of war" class="w-full h-full object-cover" loading="lazy" decoding="async">
+        </div>
+        <div class="p-5">
+          <h3 class="font-extrabold">God of war</h3>
+          <p class="text-white/70 text-sm">En este hostil e inhóspito mundo, debe pelear por sobrevivir... y enseñarle a su hijo a hacer lo mismo</p>
+        </div>
+      </article>
+
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+          <img src="https://www.cyberpowerpc.com/blog/w/wp-content/uploads/2021/01/170614755165b1bedfb6c78.png"
+               alt="Halo: The master chied collection" class="w-full h-full object-cover" loading="lazy" decoding="async">
+        </div>
+        <div class="p-5">
+          <h3 class="font-extrabold">Halo: The master chied collection</h3>
+          <p class="text-white/70 text-sm">El icónico viaje del Jefe Maestro incluye seis juegos</p>
+        </div>
+      </article>
+
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+          <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000001369/3a41386d4b0999365727a21cc5c13853cfc244abca39b689bb79a339601e48c3"
+               alt="Elders Scrolls V: Skyrim " class="w-full h-full object-cover" loading="lazy" decoding="async">
+        </div>
+        <div class="p-5">
+          <h3 class="font-extrabold">Elders Scrolls V: Skyrim</h3>
+          <p class="text-white/70 text-sm">RPG de mundo abierto...</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- HARDWARE -->
+  <section id="hardware" class="pt-10 scroll-mt-28" data-anim="fade-up">
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-2xl md:text-3xl font-extrabold">Hardware destacado</h2>
+      <a href="#" class="text-sm text-white/80 hover:text-white">Ver catálogo →</a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPvuHEHnn6tkp1zytJAeTmsZoG6ZmDIzcs7Q&s" 
+          alt="RTX 5080" class="w-full h-full object-cover" loading="lazy" decoding="async">
+        </div>
+        <div class="p-5">
+          <h3 class="font-extrabold">RTX 5080</h3>
+          <p class="text-white/70 text-sm">DLSS 4 • 16GB</p>
+        </div>
+      </article>
+
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+          <img src="https://www.officedepot.com.mx/medias/1200ftw-100256484.jpg?context=bWFzdGVyfHJvb3R8NTU5NjkwfGltYWdlL2pwZWd8YURjMUwyZ3pZaTh4TWpreU5qVTNPRGt4TnpRd05pOHhNakF3Wm5SM1h6RXdNREkxTmpRNE5DNXFjR2N8MmE4ZDk5ZDVhNzVjNWEwNWZlZTM5MWM4ZDIzZTUyYTFmMGU0NzZiZWUwODA5NDI2MTUwZDNhODg4Zjg5NzIxZA"
+               alt="Laptop Gamer 15.6" class="w-full h-full object-cover" loading="lazy" decoding="async">
+        </div>
+        <div class="p-5">
+          <h3 class="font-extrabold">Laptop Gamer 15.6"</h3>
+          <p class="text-white/70 text-sm">i9 • RTX 4070 • 32GB RAM</p>
+        </div>
+      </article>
+
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuhwe7-HJdOiU17EiwrIviM1jj4tvy6Ypt_g&s"
+               alt="Teclado Mecánico RGB" class="w-full h-full object-cover" loading="lazy" decoding="async">
+        </div>
+        <div class="p-5">
+          <h3 class="font-extrabold">Teclado Mecánico RGB</h3>
+          <p class="text-white/70 text-sm">Switches hot-swap</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- COMUNIDAD -->
+  <section id="comunidad" class="pt-10 scroll-mt-28" data-anim="fade-up">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-2xl md:text-3xl font-extrabold">Comunidad</h2>
+      <a href="#" class="text-sm text-white/80 hover:text-white">Ver agenda →</a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
+        <h3 class="font-bold text-white">Eventos & torneos</h3>
+        <p class="text-white/70 text-sm mt-1">Compite cada semana...</p>
+      </article>
+
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
+        <h3 class="font-bold text-white">Playtests & betas</h3>
+        <p class="text-white/70 text-sm mt-1">Acceso temprano...</p>
+      </article>
+
+      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
+        <h3 class="font-bold text-white">Soporte 24/7</h3>
+        <p class="text-white/70 text-sm mt-1">Ayuda técnica...</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- COMENTARIOS -->
+  <section id="comentarios" class="pt-12 pb-6 scroll-mt-28" data-anim="fade-up">
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="text-2xl md:text-3xl font-extrabold">Comentarios de la comunidad</h2>
+      <div class="flex items-center gap-2 text-sm text-white/80">
+        <span class="stars stars--avg" aria-label="Calificación promedio" title="Calificación promedio"></span>
+        <span id="avgScore" class="tabular-nums">—</span>
       </div>
-    </article>
+    </div>
+
+    <div id="commentsList" class="space-y-4 mb-4"></div>
+
+    <div id="commentsMoreWrap" class="mb-6 hidden">
+      <button id="commentsMoreBtn"
+              class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 text-sm">
+        Ver más
+      </button>
+      <span id="remainingCount" class="ml-2 text-white/60 text-sm"></span>
+    </div>
+
+    <div id="commentFormWrap" class="rounded-[24px] border border-white/10 bg-[#101b29]/70 p-4 md:p-6">
+      <form id="commentForm">
+        {% csrf_token %}
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="md:col-span-1">
+            <label class="block text-sm text-white/80 mb-1">Nombre</label>
+            <input type="text" name="author" required placeholder="Tu nombre o alias"
+                   class="w-full px-4 py-3 rounded-2xl bg-black/40 border border-white/10 text-white outline-none">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm text-white/80 mb-1">Comentario</label>
+            <textarea name="content" rows="3" required placeholder="¿Qué le pareció Gamerland?"
+                      class="w-full px-4 py-3 rounded-2xl bg-black/40 border border-white/10 text-white outline-none"></textarea>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-4">
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-white/80">Su calificación:</span>
+            <div id="starInput" class="stars stars--input" aria-label="Seleccione una calificación"></div>
+          </div>
+          <button class="px-6 py-3 rounded-2xl bg-white text-[#0f1722] font-bold self-start md:self-auto">
+            Publicar comentario
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter" class="pt-10 pb-14" data-anim="fade-up">
+    <div class="rounded-[24px] border border-white/10 bg-[#101b29]/70 p-6 md:p-10">
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <div>
+          <h3 class="text-3xl md:text-4xl font-extrabold leading-tight">
+            Explora la nueva era del gaming
+            <br>con <span class="text-gradient">Gamerland</span>
+          </h3>
+          <p class="text-white/70 mt-3">Suscríbete para recibir preventas, eventos y noticias. Sin spam.</p>
+        </div>
+        <form method="post" action="." class="flex gap-3">
+          {% csrf_token %}
+          <input type="email" name="email" placeholder="tu@email.com"
+                 class="flex-1 px-5 py-4 rounded-2xl bg-black/40 border border-white/10 text-white outline-none"
+                 required>
+          <button class="px-6 py-4 rounded-2xl bg-white text-[#0f1722] font-bold">Unirme</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="contacto" class="border-t border-white/10 mt-8" data-anim="fade-up">
+  <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+    <div>
+      <div class="font-extrabold tracking-wide text-lg">GAMERLAND</div>
+      <p class="text-white/60 text-sm mt-3">© {{ now|date:"Y" }} Gamerland. Todos los derechos reservados.</p>
+    </div>
+    <div>
+      <h4 class="font-semibold">Sitio</h4>
+      <ul class="mt-2 space-y-1 text-white/70">
+        <li><a href="#juegos" class="hover:text-white">Juegos</a></li>
+        <li><a href="#hardware" class="hover:text-white">Hardware</a></li>
+        <li><a href="#beneficios" class="hover:text-white">Beneficios</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-semibold">Contacto</h4>
+      <ul class="mt-2 space-y-1 text-white/70">
+        <li>Soporte 24/7</li>
+        <li><a href="mailto:hola@gamerland.mx" class="hover:text-white">hola@gamerland.mx</a></li>
+      </ul>
+    </div>
   </div>
-</section>
-
-<!-- JUEGOS DESTACADOS (grid 3 con media arriba y texto abajo) -->
-<section id="juegos" class="catalog">
-  <div class="section-head">
-    <h2>Juegos destacados</h2>
-    <a href="#">Ver todos →</a>
-  </div>
-
-  <div class="grid-3 cards">
-    <article class="card">
-      <div class="media" aria-hidden="true"></div>
-      <div class="card-body">
-        <h3 class="card-title">HALO: Master Chief Collection</h3>
-        <p class="card-text">Shooter futurista. [placeholder]</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media" aria-hidden="true"></div>
-      <div class="card-body">
-        <h3 class="card-title">Guardians: Nova</h3>
-        <p class="card-text">Aventura espacial narrativa. [placeholder]</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media" aria-hidden="true"></div>
-      <div class="card-body">
-        <h3 class="card-title">Skyrim</h3>
-        <p class="card-text">RPG de mundo abierto. [placeholder]</p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- HARDWARE DESTACADO (mismo patrón de grid 3) -->
-<section id="hardware" class="catalog">
-  <div class="section-head">
-    <h2>Hardware destacado</h2>
-    <a href="#">Ver todo →</a>
-  </div>
-
-  <div class="grid-3 cards">
-    <article class="card">
-      <div class="media" aria-hidden="true"></div>
-      <div class="card-body">
-        <h3 class="card-title">RTX 5080</h3>
-        <p class="card-text">DLSS 4 · 16GB. [placeholder]</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media" aria-hidden="true"></div>
-      <div class="card-body">
-        <h3 class="card-title">Laptop Gamer 15.6"</h3>
-        <p class="card-text">i9 · RTX 4070 · 32GB RAM. [placeholder]</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="media" aria-hidden="true"></div>
-      <div class="card-body">
-        <h3 class="card-title">Teclado Mecánico RGB</h3>
-        <p class="card-text">Switches hot-swap. [placeholder]</p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- COMUNIDAD -->
-<section id="comunidad">
-  <div class="section-head">
-    <h2>Comunidad</h2>
-    <span></span>
-  </div>
-  <p>[Aquí irá info de eventos, torneos, betas y enlaces a redes]</p>
-</section>
-
-<!-- NEWSLETTER / CTA -->
-<section id="newsletter">
-  <div class="section-head">
-    <h2>Únete a Gamerland</h2>
-    <span></span>
-  </div>
-  <p>[Formulario simple de suscripción irá aquí]</p>
-</section>
+</footer>
 
 =======
 {% block content %}
@@ -388,4 +629,205 @@
 })();
 </script>
 >>>>>>> gall
+{% endblock %}
+
+{% block extra_js %}
+<script>
+/* Carrusel */
+(function(){
+  const root = document.querySelector('#carousel'); if(!root) return;
+  const slides = Array.from(root.querySelectorAll('.slide'));
+  const prevBtn = root.querySelector('.prev'); const nextBtn = root.querySelector('.next');
+  const dotsBox = root.querySelector('.dots');
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'w-2 h-2 rounded-full bg-white/50 aria-[current=true]:w-7 aria-[current=true]:bg-white transition-all';
+    dot.setAttribute('aria-label','Ir al slide ' + (i+1));
+    dot.addEventListener('click', () => go(i));
+    dotsBox.appendChild(dot);
+  });
+
+  let i = 0, timer = null, D = 5200;
+  function render(){
+    slides.forEach((el, idx) => {
+      const on = idx === i;
+      el.style.opacity = on ? 1 : 0;
+      el.style.pointerEvents = on ? 'auto' : 'none';
+      el.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    dotsBox.querySelectorAll('button').forEach((d, idx) => d.setAttribute('aria-current', idx===i?'true':'false'));
+  }
+  function go(n){ i = (n + slides.length) % slides.length; render(); restart(); }
+  function next(){ go(i+1); } function prev(){ go(i-1); }
+  function start(){ timer = setInterval(next, D); } function stop(){ clearInterval(timer); timer = null; }
+  function restart(){ stop(); start(); }
+
+  prevBtn?.addEventListener('click', prev);
+  nextBtn?.addEventListener('click', next);
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  window.addEventListener('keydown', e => { if(e.key==='ArrowRight') next(); if(e.key==='ArrowLeft') prev(); });
+
+  // Swipe táctil
+  let x0=null; root.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+  root.addEventListener('touchend',e=>{ if(x0===null) return; const dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>50) (dx<0?next():prev()); x0=null; },{passive:true});
+
+  render(); start();
+})();
+
+/* Parallax sutil */
+(function(){
+  const wrap = document.querySelector('#hero .will-parallax'); if(!wrap) return;
+  const imgSlides = wrap.querySelectorAll('img');
+  let rect = null; const max = 8;
+  const onMove = (e) => {
+    if(!rect) rect = wrap.getBoundingClientRect();
+    const cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
+    const dx = (e.clientX - cx) / (rect.width/2);
+    const dy = (e.clientY - cy) / (rect.height/2);
+    imgSlides.forEach(img => img.style.transform = `translate(${(-dx*max)}px, ${(-dy*max)}px) scale(1.02)`);
+  };
+  const reset = () => imgSlides.forEach(img => img.style.transform = '');
+  wrap.addEventListener('mousemove', onMove);
+  wrap.addEventListener('mouseleave', reset);
+})();
+
+/* Reveal on-scroll */
+(function(){
+  const els = document.querySelectorAll('[data-anim]');
+  if(!els.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const map = {
+    'fade-up':   { y: 16, x: 0,  s: 1,  o: 0 },
+    'fade-right':{ y: 0,  x:-16, s: 1,  o: 0 },
+    'fade-left': { y: 0,  x: 16, s: 1,  o: 0 },
+    'fade-scale':{ y: 8,  x: 0,  s: .98,o: 0 },
+  };
+  els.forEach(el=>{
+    const t = el.dataset.anim in map ? map[el.dataset.anim] : map['fade-up'];
+    el.style.opacity = t.o;
+    el.style.transform = `translate(${t.x}px, ${t.y}px) scale(${t.s})`;
+    el.style.transition = 'transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s ease';
+    el.style.willChange = 'transform, opacity';
+  });
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity = 1;
+        e.target.style.transform = 'translate(0,0) scale(1)';
+        io.unobserve(e.target);
+      }
+    });
+  },{ threshold:.18 });
+  els.forEach(el=>io.observe(el));
+})();
+
+/* Comentarios con límite / ver más */
+(function(){
+  const KEY = 'gl_comments_v1';
+  const KEY_FLAG = 'gl_has_commented';
+  const PAGE = 4;
+
+  const list = document.getElementById('commentsList');
+  const formWrap = document.getElementById('commentFormWrap');
+  const form = document.getElementById('commentForm');
+  const starBox = document.getElementById('starInput');
+  const avgEl = document.getElementById('avgScore');
+
+  const moreWrap = document.getElementById('commentsMoreWrap');
+  const moreBtn = document.getElementById('commentsMoreBtn');
+  const remainingEl = document.getElementById('remainingCount');
+
+  if(!list || !starBox) return;
+
+  let currentScore = 5;
+  const makeStar = (i, filled=true) => {
+    const s = document.createElement('button');
+    s.type = 'button'; s.className = 'star';
+    s.setAttribute('aria-label', `${i} estrellas`);
+    s.innerHTML = filled ? '★' : '☆';
+    s.addEventListener('mouseenter', ()=>paint(i));
+    s.addEventListener('click', ()=>{ currentScore = i; paint(i); });
+    return s;
+  };
+  const paint = (n) => { [...starBox.children].forEach((b, idx)=> b.innerHTML = (idx < n ? '★' : '☆')); };
+  for(let i=1;i<=5;i++) starBox.appendChild(makeStar(i, i<=currentScore)); paint(currentScore);
+
+  const fmt = (d)=> new Date(d).toLocaleDateString(undefined,{year:'numeric',month:'short',day:'2-digit'});
+  function escapeHtml (str=''){ return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+  const load = ()=> { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; } };
+  const save = (items)=> localStorage.setItem(KEY, JSON.stringify(items));
+
+  let shown = PAGE;
+  const render = (items=[]) => {
+    list.innerHTML = '';
+    const slice = items.slice(0, shown);
+    if(!slice.length){
+      const empty = document.createElement('p');
+      empty.className = 'text-white/60 text-sm';
+      empty.textContent = 'Aún no hay comentarios. ¡Sea el primero en opinar!';
+      list.appendChild(empty);
+    } else {
+      slice.forEach(({author,content,score,date})=>{
+        const card = document.createElement('article');
+        card.className = 'rounded-2xl bg-[#142231] border border-white/10 p-4';
+        card.innerHTML = `
+          <div class="flex items-center justify-between mb-1">
+            <div class="font-semibold">${escapeHtml(author||'Anónimo')}</div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="stars" aria-hidden="true">${'★'.repeat(score)}${'☆'.repeat(5-score)}</span>
+              <time class="text-white/60">${fmt(date)}</time>
+            </div>
+          </div>
+          <p class="text-white/80 text-sm leading-relaxed">${escapeHtml(content)}</p>
+        `;
+        list.appendChild(card);
+      });
+    }
+    const avg = items.length ? (items.reduce((a,b)=>a+b.score,0)/items.length) : 0;
+    avgEl.textContent = items.length ? avg.toFixed(1) + ' / 5' : '—';
+    const avgStars = document.querySelector('.stars--avg');
+    if(avgStars) avgStars.innerHTML = items.length ? '★'.repeat(Math.round(avg)) + '☆'.repeat(5-Math.round(avg)) : '';
+
+    const remaining = Math.max(items.length - shown, 0);
+    if(remaining > 0){ moreWrap.classList.remove('hidden'); remainingEl.textContent = `(${remaining} restantes)`; }
+    else { moreWrap.classList.add('hidden'); remainingEl.textContent = ''; }
+  };
+
+  if(form){
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      const fd = new FormData(form);
+      const author = (fd.get('author')||'').toString().trim();
+      const content = (fd.get('content')||'').toString().trim();
+      if(!content){ return; }
+      const items = load();
+      items.unshift({ author: author || 'Anónimo', content, score: currentScore, date: Date.now() });
+      save(items);
+      localStorage.setItem(KEY_FLAG, '1');
+      formWrap?.classList.add('hidden');
+      shown = Math.max(shown, PAGE);
+      render(items);
+    });
+  }
+
+  moreBtn?.addEventListener('click', ()=>{ shown += PAGE; render(load()); });
+
+  const hasCommented = localStorage.getItem(KEY_FLAG) === '1';
+  if(hasCommented) formWrap?.classList.add('hidden');
+
+  const init = load();
+  if(!init.length){
+    const demo = [
+      {author:'Karla', content:'La curaduría de juegos está buenísima. Me encantó el carrusel.', score:5, date: Date.now()-86400000*2},
+      {author:'Jorge', content:'Buen catálogo de hardware, me ayudó a decidir mi GPU.', score:4, date: Date.now()-86400000},
+      {author:'Alex', content:'El tema oscuro y los degradados están de 10.', score:5, date: Date.now()-86400000*3},
+      {author:'Mara', content:'Las reseñas me ahorraron tiempo, gracias.', score:4, date: Date.now()-86400000*5},
+      {author:'Rafa', content:'Me gustaría ver más indies destacados.', score:4, date: Date.now()-86400000*7},
+    ];
+    save(demo); render(demo);
+  } else { render(init); }
+})();
+</script>
 {% endblock %}
