@@ -1,388 +1,598 @@
-(venv) gall@gall-HP:~/GamerLand$ cat templates/landing.html
-{% extends "base.html" %}
-{% block title %}Gamerland — Presentación{% endblock %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gamerland — Presentación</title>
 
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-{% block content %}
+  <!-- CSS propio -->
+  <link rel="stylesheet" href="./css/style.css">
 
+  <style>
+    .text-gradient{
+      background: linear-gradient(90deg,#6ea8ff 0%, #bb6bd9 55%, #ff86c8 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .ratio-21-9{ position:relative; }
+    .ratio-21-9::before{
+      content:"";
+      display:block;
+      padding-top:42%;
+    }
+    .ratio-21-9 > .fill{
+      position:absolute;
+      inset:0;
+    }
+    .floaty{
+      box-shadow:
+        0 10px 30px rgba(110,168,255,.45),
+        0 20px 60px rgba(187,107,217,.35),
+        0 30px 80px rgba(255,134,200,.25);
+    }
+  </style>
+</head>
 
-<!-- TOPBAR -->
-<header class="sticky top-0 z-40 bg-[#0f1722]/95 backdrop-blur border-b border-white/10">
-  <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href="#" class="flex items-center gap-3">
-      <span class="inline-grid place-items-center w-7 h-7 rounded-xl shadow ring-4 ring-white/10 floaty"
-            style="background:linear-gradient(135deg,#5aa2ff 0%,#bb6bd9 60%,#ff86c8 100%);">
-        <svg viewBox="0 0 24 24" class="w-4 h-4 text-white" fill="none" stroke="currentColor"
-             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 15l3-3h8l3 3"/>
-          <circle cx="9" cy="12" r="0.6"/>
-          <circle cx="15" cy="12" r="0.6"/>
-          <path d="M8 9h2M9 8v2M14.5 9.5h0.01M16.5 11.5h0.01"/>
-        </svg>
-      </span>
-      <span class="font-extrabold tracking-wide">GAMERLAND</span>
-    </a>
+<body class="min-h-screen bg-[#0f1722] text-[#e8eef6] motion-safe:scroll-smooth">
+  <!-- Canvas de fondo -->
+  <canvas id="bg-peripherals" aria-hidden="true"></canvas>
 
-    <div class="hidden md:flex items-center gap-8 text-sm text-white/90">
-      <a href="#juegos" class="hover:text-white">Juegos</a>
-      <a href="#hardware" class="hover:text-white">Hardware</a>
-      <a href="#beneficios" class="hover:text-white">Beneficios</a>
-      <a href="#comunidad" class="hover:text-white">Comunidad</a>
-      <a href="#comentarios" class="hover:text-white">Comentarios</a>
-      <a href="#contacto" class="hover:text-white">Contacto</a>
-    </div>
+  <!-- Capa de contenido por encima del canvas -->
+  <div class="relative z-10">
 
-    <a href="#newsletter"
-       class="ml-6 inline-flex items-center gap-2 rounded-2xl bg-white text-[#0f1722] font-semibold px-4 py-2 shadow">
-      Únete gratis
-    </a>
-  </nav>
-</header>
+    <!-- TOPBAR -->
+    <header class="sticky top-0 z-40 bg-[#0f1722]/95 backdrop-blur border-b border-white/10">
+      <nav class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3">
+          <span class="inline-grid place-items-center w-7 h-7 rounded-xl shadow ring-4 ring-white/10 floaty"
+                style="background:linear-gradient(135deg,#5aa2ff 0%,#bb6bd9 60%,#ff86c8 100%);">
+            <svg viewBox="0 0 24 24" class="w-4 h-4 text-white" fill="none" stroke="currentColor"
+                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 15l3-3h8l3 3"/>
+              <circle cx="9" cy="12" r="0.6"/>
+              <circle cx="15" cy="12" r="0.6"/>
+              <path d="M8 9h2M9 8v2M14.5 9.5h0.01M16.5 11.5h0.01"/>
+            </svg>
+          </span>
+          <span class="font-extrabold tracking-wide">GAMERLAND</span>
+        </a>
 
-<main class="max-w-6xl mx-auto px-4">
+        <div class="hidden md:flex items-center gap-8 text-sm text-white/90">
+          <a href="#juegos" class="hover:text-white">Juegos</a>
+          <a href="#hardware" class="hover:text-white">Hardware</a>
+          <a href="#beneficios" class="hover:text-white">Beneficios</a>
+          <a href="#comunidad" class="hover:text-white">Comunidad</a>
+          <a href="#comentarios" class="hover:text-white">Comentarios</a>
+          <a href="#contacto" class="hover:text-white">Contacto</a>
+        </div>
 
-  <!-- HERO / CARRUSEL -->
-  <section id="hero" class="my-5" data-anim="fade-scale">
-    <div id="carousel" class="relative rounded-3xl overflow-hidden shadow-xl bg-slate-900">
-      <div class="ratio-21-9">
-        <div class="fill will-parallax">
+        <a href="#newsletter"
+           class="ml-6 inline-flex items-center gap-2 rounded-2xl bg-white text-[#0f1722] font-semibold px-4 py-2 shadow">
+          Únete gratis
+        </a>
+      </nav>
+    </header>
 
-          <!-- SLIDE 1 -->
-          <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="0" aria-hidden="true">
-            <img
-              src="https://cdn.elpopular.mx/notas/comunidad/2024/08/30/dia-del-gamer-como-vivir-de-los-videojuegos/2d1b0cddcbc55b1b981e89ef8bf92895.jpg"
-              alt="Comunidad Gamerland"
-              class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-black/45"></div>
-            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <span class="self-start px-3 py-1 rounded-lg bg-emerald-400 text-[#0b1320] font-extrabold">COMUNIDAD</span>
-              <h1 class="mt-3 text-white font-extrabold leading-tight text-[clamp(28px,4vw,56px)]">
-                Únete a <span class="text-gradient">Gamerland Play</span>
-              </h1>
-              <p class="mt-1 text-white/95 text-[clamp(14px,1.8vw,20px)]">Eventos, torneos y acceso temprano a betas.</p>
-              <div class="mt-4 flex gap-3">
-                <a href="#newsletter" class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Unirme gratis</a>
-                <a href="#comunidad" class="px-5 py-3 rounded-xl border border-white/20 text-white bg-white/10 hover:bg-white/15">Ver agenda</a>
-              </div>
+    <main class="max-w-6xl mx-auto px-4">
+
+      <!-- HERO / CARRUSEL -->
+      <section id="hero" class="my-5" data-anim="fade-scale">
+        <div id="carousel" class="relative rounded-3xl overflow-hidden shadow-xl bg-slate-900">
+          <div class="ratio-21-9">
+            <div class="fill will-parallax">
+
+              <!-- SLIDE 1 -->
+              <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="0" aria-hidden="true">
+                <img
+                  src="https://cdn.elpopular.mx/notas/comunidad/2024/08/30/dia-del-gamer-como-vivir-de-los-videojuegos/2d1b0cddcbc55b1b981e89ef8bf92895.jpg"
+                  alt="Comunidad Gamerland"
+                  class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black/45"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                  <span class="self-start px-3 py-1 rounded-lg bg-emerald-400 text-[#0b1320] font-extrabold">COMUNIDAD</span>
+                  <h1 class="mt-3 text-white font-extrabold leading-tight text-[clamp(28px,4vw,56px)]">
+                    Únete a <span class="text-gradient">Gamerland Play</span>
+                  </h1>
+                  <p class="mt-1 text-white/95 text-[clamp(14px,1.8vw,20px)]">Eventos, torneos y acceso temprano a betas.</p>
+                  <div class="mt-4 flex gap-3">
+                    <a href="#newsletter" class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Unirme gratis</a>
+                    <a href="#comunidad" class="px-5 py-3 rounded-xl border border-white/20 text-white bg-white/10 hover:bg-white/15">Ver agenda</a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- SLIDE 2 -->
+              <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="1" aria-hidden="true">
+                <img
+                  src="https://www.zonapcera.com/wp-content/uploads/2025/07/Lo-mejor-2024.webp"
+                  alt="Juegos destacados"
+                  class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black/45"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                  <span class="self-start px-3 py-1 rounded-lg bg-blue-500 text-white font-extrabold">JUEGOS</span>
+                  <h2 class="mt-3 text-white font-extrabold leading-tight text-[clamp(26px,3.6vw,50px)]">
+                    Lanzamientos y <span class="text-gradient">selecciones AAA</span>
+                  </h2>
+                  <p class="mt-1 text-white/95 text-[clamp(14px,1.8vw,20px)]">Descubra lo mejor de cada género.</p>
+                  <div class="mt-4 flex gap-3">
+                    <a href="#juegos" class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Ver lanzamientos</a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- SLIDE 3 -->
+              <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="2" aria-hidden="true">
+                <img
+                  src="https://www.asus.com/campaign/powered-by-asus/upload/scenario/20250320035129_pic0.jpg"
+                  alt="Hardware probado"
+                  class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-black/45"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                  <span class="self-start px-3 py-1 rounded-lg bg-fuchsia-500 text-white font-extrabold">HARDWARE</span>
+                  <h2 class="mt-3 text-white font-extrabold leading-tight text-[clamp(26px,3.6vw,50px)]">
+                    Benchmarks reales y <span class="text-gradient">setup de élite</span>
+                  </h2>
+                  <p class="mt-1 text-white/95 text-[clamp(14px,1.8vw,20px)]">GPUs, laptops y periféricos probados.</p>
+                  <div class="mt-4 flex gap-3">
+                    <a href="#hardware" class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Ver catálogo</a>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <!-- Flechas -->
+          <button class="prev absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 text-white text-xl
+                         grid place-items-center hover:bg-black/55" aria-label="Anterior">‹</button>
+          <button class="next absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 text-white text-xl
+                         grid place-items-center hover:bg-black/55" aria-label="Siguiente">›</button>
+
+          <!-- Dots -->
+          <div class="dots absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2"></div>
+        </div>
+      </section>
+
+      <hr class="border-white/10">
+
+      <!-- BENEFICIOS -->
+      <section id="beneficios" class="pt-6 scroll-mt-28" data-anim="fade-up">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl md:text-3xl font-extrabold">Por qué Gamerland</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6" data-anim="fade-right">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-blue-500/90 ring-4 ring-blue-500/15 shadow-sm">
+              <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H11v14H5.5A2.5 2.5 0 0 1 3 15.5v-9Z"/>
+                <path d="M21 6.5A2.5 2.5 0 0 0 18.5 4H13v14h5.5A2.5 2.5 0 0 0 21 15.5v-9Z"/>
+              </svg>
+            </span>
+            <div>
+              <h3 class="font-bold text-lg text-white">Catálogo AAA</h3>
+              <p class="text-white/70 text-sm">Lanzamientos y clásicos con curaduría experta y reseñas de la comunidad.</p>
             </div>
           </article>
 
-          <!-- SLIDE 2 (cerrado correctamente) -->
-          <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="1" aria-hidden="true">
-            <img
-              src="https://www.zonapcera.com/wp-content/uploads/2025/07/Lo-mejor-2024.webp"
-              alt="Juegos destacados"
-              class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-black/45"></div>
-            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <span class="self-start px-3 py-1 rounded-lg bg-blue-500 text-white font-extrabold">JUEGOS</span>
-              <h2 class="mt-3 text-white font-extrabold leading-tight text-[clamp(26px,3.6vw,50px)]">
-                Lanzamientos y <span class="text-gradient">selecciones AAA</span>
-              </h2>
-              <p class="mt-1 text-white/95 text-[clamp(14px,1.8vw,20px)]">Descubre lo mejor de cada género.</p>
-              <div class="mt-4 flex gap-3">
-                <a href="#juegos" class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Ver lanzamientos</a>
-              </div>
+          <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-fuchsia-500/90 ring-4 ring-fuchsia-500/15 shadow-sm">
+              <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="7" y="7" width="10" height="10" rx="2"/>
+                <path d="M4 10h3M4 14h3M17 10h3M17 14h3M10 4v3M14 4v3M10 17v3M14 17v3"/>
+              </svg>
+            </span>
+            <div>
+              <h3 class="font-bold text-lg text-white">Hardware de élite</h3>
+              <p class="text-white/70 text-sm">GPUs, laptops y periféricos probados con benchmarks reales.</p>
             </div>
           </article>
 
-          <!-- SLIDE 3 -->
-          <article class="slide absolute inset-0 opacity-0 transition-opacity duration-700" data-idx="2" aria-hidden="true">
-            <img
-              src="https://www.asus.com/campaign/powered-by-asus/upload/scenario/20250320035129_pic0.jpg"
-              alt="Hardware probado"
-              class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-black/45"></div>
-            <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <span class="self-start px-3 py-1 rounded-lg bg-fuchsia-500 text-white font-extrabold">HARDWARE</span>
-              <h2 class="mt-3 text-white font-extrabold leading-tight text-[clamp(26px,3.6vw,50px)]">
-                Benchmarks reales y <span class="text-gradient">setup de élite</span>
-              </h2>
-              <p class="mt-1 text-white/95 text-[clamp(14px,1.8vw,20px)]">GPUs, laptops y periféricos probados.</p>
-              <div class="mt-4 flex gap-3">
-                <a href="#hardware" class="px-5 py-3 rounded-xl bg-white text-[#0f1722] font-bold">Ver catálogo</a>
-              </div>
+          <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6" data-anim="fade-left">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-emerald-400/90 ring-4 ring-emerald-400/15 shadow-sm">
+              <svg viewBox="0 0 24 24" class="w-5 h-5 text-[#0b1320]" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="16.5" cy="8.5" r="2.5"/>
+                <path d="M7 15a4 4 0 1 1 6.9 3H6a3 3 0 0 1-3-3v-1a5 5 0 1 1 8.9 3"/>
+                <path d="M21 20v-1a4 4 0 0 0-4-4h-1"/>
+              </svg>
+            </span>
+            <div>
+              <h3 class="font-bold text-lg text-white">Comunidad & soporte</h3>
+              <p class="text-white/70 text-sm">Eventos, guías y asistencia 24/7 para sacar el máximo a su setup.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- JUEGOS -->
+      <section id="juegos" class="pt-10 scroll-mt-28" data-anim="fade-up">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-2xl md:text-3xl font-extrabold">Juegos destacados</h2>
+          <a href="#" class="text-sm text-white/80 hover:text-white">Ver todos →</a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+            <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh8KU8u29Yo80xrEm39bov5gsL0FgAw2xyHA&s"
+                   alt="God of war" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="p-5">
+              <h3 class="font-extrabold">God of war</h3>
+              <p class="text-white/70 text-sm">En este hostil e inhóspito mundo, debe pelear por sobrevivir... y enseñarle a su hijo a hacer lo mismo</p>
             </div>
           </article>
 
+          <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+            <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+              <img src="https://www.cyberpowerpc.com/blog/w/wp-content/uploads/2021/01/170614755165b1bedfb6c78.png"
+                   alt="Halo: The Master Chief Collection" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="p-5">
+              <h3 class="font-extrabold">Halo: The Master Chief Collection</h3>
+              <p class="text-white/70 text-sm">El icónico viaje del Jefe Maestro incluye seis juegos</p>
+            </div>
+          </article>
+
+          <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+            <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+              <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000001369/3a41386d4b0999365727a21cc5c13853cfc244abca39b689bb79a339601e48c3"
+                   alt="Elder Scrolls V: Skyrim" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="p-5">
+              <h3 class="font-extrabold">The Elder Scrolls V: Skyrim</h3>
+              <p class="text-white/70 text-sm">RPG de mundo abierto...</p>
+            </div>
+          </article>
         </div>
-      </div>
+      </section>
 
-      <!-- Flechas -->
-      <button class="prev absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 text-white text-xl
-                     grid place-items-center hover:bg-black/55" aria-label="Anterior">‹</button>
-      <button class="next absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 text-white text-xl
-                     grid place-items-center hover:bg-black/55" aria-label="Siguiente">›</button>
-
-      <!-- Dots -->
-      <div class="dots absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2"></div>
-    </div>
-  </section>
-
-  <hr class="border-white/10">
-
-  <!-- BENEFICIOS -->
-  <section id="beneficios" class="pt-6 scroll-mt-28" data-anim="fade-up">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-2xl md:text-3xl font-extrabold">Por qué Gamerland</h2>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6" data-anim="fade-right">
-        <span class="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-blue-500/90 ring-4 ring-blue-500/15 shadow-sm">
-          <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H11v14H5.5A2.5 2.5 0 0 1 3 15.5v-9Z"/>
-            <path d="M21 6.5A2.5 2.5 0 0 0 18.5 4H13v14h5.5A2.5 2.5 0 0 0 21 15.5v-9Z"/>
-          </svg>
-        </span>
-        <div>
-          <h3 class="font-bold text-lg text-white">Catálogo AAA</h3>
-          <p class="text-white/70 text-sm">Lanzamientos y clásicos con curaduría experta y reseñas de la comunidad.</p>
+      <!-- HARDWARE -->
+      <section id="hardware" class="pt-10 scroll-mt-28" data-anim="fade-up">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-2xl md:text-3xl font-extrabold">Hardware destacado</h2>
+          <a href="#" class="text-sm text-white/80 hover:text-white">Ver catálogo →</a>
         </div>
-      </article>
 
-      <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
-        <span class="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-fuchsia-500/90 ring-4 ring-fuchsia-500/15 shadow-sm">
-          <svg viewBox="0 0 24 24" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="7" y="7" width="10" height="10" rx="2"/>
-            <path d="M4 10h3M4 14h3M17 10h3M17 14h3M10 4v3M14 4v3M10 17v3M14 17v3"/>
-          </svg>
-        </span>
-        <div>
-          <h3 class="font-bold text-lg text-white">Hardware de élite</h3>
-          <p class="text-white/70 text-sm">GPUs, laptops y periféricos probados con benchmarks reales.</p>
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+            <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+              <img src="https://www.zotac.com/download/files/styles/w1024/public/product_gallery/graphics_cards/zt-b50800b-10p-image01.jpg?itok=hqgwWQOO" 
+              alt="RTX 5080" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="p-5">
+              <h3 class="font-extrabold">RTX 5080</h3>
+              <p class="text-white/70 text-sm">DLSS 4 • 16GB</p>
+            </div>
+          </article>
+
+          <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+            <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+              <img src="https://www.officedepot.com.mx/medias/1200ftw-100256484.jpg?context=bWFzdGVyfHJvb3R8NTU5NjkwfGltYWdlL2pwZWd8YURjMUwyZ3pZaTh4TWpreU5qVTNPRGt4TnpRd05pOHhNakF3Wm5SM1h6RXdNREkxTmpRNE5DNXFjR2N8MmE4ZDk5ZDVhNzVjNWEwNWZlZTM5MWM4ZDIzZTUyYTFmMGU0NzZiZWUwODA5NDI2MTUwZDNhODg4Zjg5NzIxZA"
+                   alt="Laptop Gamer 15.6" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="p-5">
+              <h3 class="font-extrabold">Laptop Gamer 15.6"</h3>
+              <p class="text-white/70 text-sm">i9 • RTX 4070 • 32GB RAM</p>
+            </div>
+          </article>
+
+          <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
+            <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuhwe7-HJdOiU17EiwrIviM1jj4tvy6Ypt_g&s"
+                   alt="Teclado Mecánico RGB" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            </div>
+            <div class="p-5">
+              <h3 class="font-extrabold">Teclado Mecánico RGB</h3>
+              <p class="text-white/70 text-sm">Switches hot-swap</p>
+            </div>
+          </article>
         </div>
-      </article>
+      </section>
 
-      <article class="flex gap-4 items-start rounded-2xl bg-[#142231] border border-white/10 p-6" data-anim="fade-left">
-        <span class="inline-flex items-center justify-center w-8 h-8 rounded-XL bg-emerald-400/90 ring-4 ring-emerald-400/15 shadow-sm">
-          <svg viewBox="0 0 24 24" class="w-5 h-5 text-[#0b1320]" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="16.5" cy="8.5" r="2.5"/>
-            <path d="M7 15a4 4 0 1 1 6.9 3H6a3 3 0 0 1-3-3v-1a5 5 0 1 1 8.9 3"/>
-            <path d="M21 20v-1a4 4 0 0 0-4-4h-1"/>
-          </svg>
-        </span>
-        <div>
-          <h3 class="font-bold text-lg text-white">Comunidad & soporte</h3>
-          <p class="text-white/70 text-sm">Eventos, guías y asistencia 24/7 para sacar el máximo a tu setup.</p>
+      <!-- COMUNIDAD -->
+      <section id="comunidad" class="pt-10 scroll-mt-28" data-anim="fade-up">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-2xl md:text-3xl font-extrabold">Comunidad</h2>
+          <a href="#" class="text-sm text-white/80 hover:text-white">Ver agenda →</a>
         </div>
-      </article>
-    </div>
-  </section>
 
-  <!-- JUEGOS -->
-  <section id="juegos" class="pt-10 scroll-mt-28" data-anim="fade-up">
-    <div class="flex items-center justify-between mb-2">
-      <h2 class="text-2xl md:text-3xl font-extrabold">Juegos destacados</h2>
-      <a href="#" class="text-sm text-white/80 hover:text-white">Ver todos →</a>
-    </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
+            <h3 class="font-bold text-white">Eventos & torneos</h3>
+            <p class="text-white/70 text-sm mt-1">Compita cada semana...</p>
+          </article>
 
-    <div class="grid md:grid-cols-3 gap-6">
-      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
-        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh8KU8u29Yo80xrEm39bov5gsL0FgAw2xyHA&s"
-               alt="God of war" class="w-full h-full object-cover" loading="lazy" decoding="async">
+          <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
+            <h3 class="font-bold text-white">Playtests & betas</h3>
+            <p class="text-white/70 text-sm mt-1">Acceso temprano...</p>
+          </article>
+
+          <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
+            <h3 class="font-bold text-white">Soporte 24/7</h3>
+            <p class="text-white/70 text-sm mt-1">Ayuda técnica...</p>
+          </article>
         </div>
-        <div class="p-5">
-          <h3 class="font-extrabold">God of war</h3>
-          <p class="text-white/70 text-sm">En este hostil e inhóspito mundo, debe pelear por sobrevivir... y enseñarle a su hijo a hacer lo mismo</p>
-        </div>
-      </article>
+      </section>
 
-      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
-        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
-          <img src="https://www.cyberpowerpc.com/blog/w/wp-content/uploads/2021/01/170614755165b1bedfb6c78.png"
-               alt="Halo: The master chied collection" class="w-full h-full object-cover" loading="lazy" decoding="async">
-        </div>
-        <div class="p-5">
-          <h3 class="font-extrabold">Halo: The master chied collection</h3>
-          <p class="text-white/70 text-sm">El icónico viaje del Jefe Maestro incluye seis juegos</p>
-        </div>
-      </article>
-
-      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
-        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
-          <img src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000001369/3a41386d4b0999365727a21cc5c13853cfc244abca39b689bb79a339601e48c3"
-               alt="Elders Scrolls V: Skyrim " class="w-full h-full object-cover" loading="lazy" decoding="async">
-        </div>
-        <div class="p-5">
-          <h3 class="font-extrabold">Elders Scrolls V: Skyrim</h3>
-          <p class="text-white/70 text-sm">RPG de mundo abierto...</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- HARDWARE -->
-  <section id="hardware" class="pt-10 scroll-mt-28" data-anim="fade-up">
-    <div class="flex items-center justify-between mb-2">
-      <h2 class="text-2xl md:text-3xl font-extrabold">Hardware destacado</h2>
-      <a href="#" class="text-sm text-white/80 hover:text-white">Ver catálogo →</a>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
-        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
-          <img src="https://www.zotac.com/download/files/styles/w1024/public/product_gallery/graphics_cards/zt-b50800b-10p-image01.jpg?itok=hqgwWQOO" 
-          alt="RTX 5080" class="w-full h-full object-cover" loading="lazy" decoding="async">
-        </div>
-        <div class="p-5">
-          <h3 class="font-extrabold">RTX 5080</h3>
-          <p class="text-white/70 text-sm">DLSS 4 • 16GB</p>
-        </div>
-      </article>
-
-      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
-        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
-          <img src="https://www.officedepot.com.mx/medias/1200ftw-100256484.jpg?context=bWFzdGVyfHJvb3R8NTU5NjkwfGltYWdlL2pwZWd8YURjMUwyZ3pZaTh4TWpreU5qVTNPRGt4TnpRd05pOHhNakF3Wm5SM1h6RXdNREkxTmpRNE5DNXFjR2N8MmE4ZDk5ZDVhNzVjNWEwNWZlZTM5MWM4ZDIzZTUyYTFmMGU0NzZiZWUwODA5NDI2MTUwZDNhODg4Zjg5NzIxZA"
-               alt="Laptop Gamer 15.6" class="w-full h-full object-cover" loading="lazy" decoding="async">
-        </div>
-        <div class="p-5">
-          <h3 class="font-extrabold">Laptop Gamer 15.6"</h3>
-          <p class="text-white/70 text-sm">i9 • RTX 4070 • 32GB RAM</p>
-        </div>
-      </article>
-
-      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10" data-anim="fade-up">
-        <div class="w-full auto-zoom" style="aspect-ratio:16/9;">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuhwe7-HJdOiU17EiwrIviM1jj4tvy6Ypt_g&s"
-               alt="Teclado Mecánico RGB" class="w-full h-full object-cover" loading="lazy" decoding="async">
-        </div>
-        <div class="p-5">
-          <h3 class="font-extrabold">Teclado Mecánico RGB</h3>
-          <p class="text-white/70 text-sm">Switches hot-swap</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- COMUNIDAD -->
-  <section id="comunidad" class="pt-10 scroll-mt-28" data-anim="fade-up">
-    <div class="flex items-center justify-between mb-3">
-      <h2 class="text-2xl md:text-3xl font-extrabold">Comunidad</h2>
-      <a href="#" class="text-sm text-white/80 hover:text-white">Ver agenda →</a>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
-        <h3 class="font-bold text-white">Eventos & torneos</h3>
-        <p class="text-white/70 text-sm mt-1">Compite cada semana...</p>
-      </article>
-
-      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
-        <h3 class="font-bold text-white">Playtests & betas</h3>
-        <p class="text-white/70 text-sm mt-1">Acceso temprano...</p>
-      </article>
-
-      <article class="rounded-2xl overflow-hidden bg-[#142231] border border-white/10 p-6" data-anim="fade-up">
-        <h3 class="font-bold text-white">Soporte 24/7</h3>
-        <p class="text-white/70 text-sm mt-1">Ayuda técnica...</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- COMENTARIOS -->
-  <section id="comentarios" class="pt-12 pb-6 scroll-mt-28" data-anim="fade-up">
-    <div class="flex items-center justify-between mb-2">
-      <h2 class="text-2xl md:text-3xl font-extrabold">Comentarios de la comunidad</h2>
-      <div class="flex items-center gap-2 text-sm text-white/80">
-        <span class="stars stars--avg" aria-label="Calificación promedio" title="Calificación promedio"></span>
-        <span id="avgScore" class="tabular-nums">—</span>
-      </div>
-    </div>
-
-    <div id="commentsList" class="space-y-4 mb-4"></div>
-
-    <div id="commentsMoreWrap" class="mb-6 hidden">
-      <button id="commentsMoreBtn"
-              class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 text-sm">
-        Ver más
-      </button>
-      <span id="remainingCount" class="ml-2 text-white/60 text-sm"></span>
-    </div>
-
-    <div id="commentFormWrap" class="rounded-[24px] border border-white/10 bg-[#101b29]/70 p-4 md:p-6">
-      <form id="commentForm">
-        {% csrf_token %}
-        <div class="grid md:grid-cols-3 gap-4">
-          <div class="md:col-span-1">
-            <label class="block text-sm text-white/80 mb-1">Nombre</label>
-            <input type="text" name="author" required placeholder="Tu nombre o alias"
-                   class="w-full px-4 py-3 rounded-2xl bg-black/40 border border-white/10 text-white outline-none">
-          </div>
-          <div class="md:col-span-2">
-            <label class="block text-sm text-white/80 mb-1">Comentario</label>
-            <textarea name="content" rows="3" required placeholder="¿Qué le pareció Gamerland?"
-                      class="w-full px-4 py-3 rounded-2xl bg-black/40 border border-white/10 text-white outline-none"></textarea>
+      <!-- COMENTARIOS -->
+      <section id="comentarios" class="pt-12 pb-6 scroll-mt-28" data-anim="fade-up">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="text-2xl md:text-3xl font-extrabold">Comentarios de la comunidad</h2>
+          <div class="flex items-center gap-2 text-sm text-white/80">
+            <span class="stars stars--avg" aria-label="Calificación promedio" title="Calificación promedio"></span>
+            <span id="avgScore" class="tabular-nums">—</span>
           </div>
         </div>
 
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-4">
-          <div class="flex items-center gap-2">
-            <span class="text-sm text-white/80">Su calificación:</span>
-            <div id="starInput" class="stars stars--input" aria-label="Seleccione una calificación"></div>
-          </div>
-          <button class="px-6 py-3 rounded-2xl bg-white text-[#0f1722] font-bold self-start md:self-auto">
-            Publicar comentario
+        <div id="commentsList" class="space-y-4 mb-4"></div>
+
+        <div id="commentsMoreWrap" class="mb-6 hidden">
+          <button id="commentsMoreBtn"
+                  class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 hover:bg-white/15 text-sm">
+            Ver más
           </button>
+          <span id="remainingCount" class="ml-2 text-white/60 text-sm"></span>
         </div>
-      </form>
-    </div>
-  </section>
 
-  <!-- NEWSLETTER -->
-  <section id="newsletter" class="pt-10 pb-14" data-anim="fade-up">
-    <div class="rounded-[24px] border border-white/10 bg-[#101b29]/70 p-6 md:p-10">
-      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <div id="commentFormWrap" class="rounded-[24px] border border-white/10 bg-[#101b29]/70 p-4 md:p-6">
+          <!-- Ya no usamos form Django real, lo manejamos con JS/localStorage -->
+          <form id="commentForm">
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="md:col-span-1">
+                <label class="block text-sm text-white/80 mb-1">Nombre</label>
+                <input type="text" name="author" required placeholder="Tu nombre o alias"
+                       class="w-full px-4 py-3 rounded-2xl bg-black/40 border border-white/10 text-white outline-none">
+              </div>
+              <div class="md:col-span-2">
+                <label class="block text-sm text-white/80 mb-1">Comentario</label>
+                <textarea name="content" rows="3" required placeholder="¿Qué le pareció Gamerland?"
+                          class="w-full px-4 py-3 rounded-2xl bg-black/40 border border-white/10 text-white outline-none"></textarea>
+              </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-4">
+              <div class="flex items-center gap-2">
+                <span class="text-sm text-white/80">Su calificación:</span>
+                <div id="starInput" class="stars stars--input" aria-label="Seleccione una calificación"></div>
+              </div>
+              <button type="submit" class="px-6 py-3 rounded-2xl bg-white text-[#0f1722] font-bold self-start md:self-auto">
+                Publicar comentario
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section id="newsletter" class="pt-10 pb-14" data-anim="fade-up">
+        <div class="rounded-[24px] border border-white/10 bg-[#101b29]/70 p-6 md:p-10">
+          <div class="grid md:grid-cols-2 gap-6 items-center">
+            <div>
+              <h3 class="text-3xl md:text-4xl font-extrabold leading-tight">
+                Explora la nueva era del gaming
+                <br>con <span class="text-gradient">Gamerland</span>
+              </h3>
+              <p class="text-white/70 mt-3">Suscríbase para recibir preventas, eventos y noticias. Sin spam.</p>
+            </div>
+
+            <!-- Quité el {% csrf_token %} y cambié el form para que no haga POST real -->
+            <form class="flex gap-3" onsubmit="event.preventDefault(); alert('Gracias por suscribirse 🙌');">
+              <input type="email" name="email" placeholder="tu@email.com"
+                     class="flex-1 px-5 py-4 rounded-2xl bg-black/40 border border-white/10 text-white outline-none"
+                     required>
+              <button class="px-6 py-4 rounded-2xl bg-white text-[#0f1722] font-bold">Unirme</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contacto" class="border-t border-white/10 mt-8" data-anim="fade-up">
+      <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
         <div>
-          <h3 class="text-3xl md:text-4xl font-extrabold leading-tight">
-            Explora la nueva era del gaming
-            <br>con <span class="text-gradient">Gamerland</span>
-          </h3>
-          <p class="text-white/70 mt-3">Suscríbete para recibir preventas, eventos y noticias. Sin spam.</p>
+          <div class="font-extrabold tracking-wide text-lg">GAMERLAND</div>
+          <p class="text-white/60 text-sm mt-3">© 2025 Gamerland. Todos los derechos reservados.</p>
         </div>
-        <form method="post" action="." class="flex gap-3">
-          {% csrf_token %}
-          <input type="email" name="email" placeholder="tu@email.com"
-                 class="flex-1 px-5 py-4 rounded-2xl bg-black/40 border border-white/10 text-white outline-none"
-                 required>
-          <button class="px-6 py-4 rounded-2xl bg-white text-[#0f1722] font-bold">Unirme</button>
-        </form>
+        <div>
+          <h4 class="font-semibold">Sitio</h4>
+          <ul class="mt-2 space-y-1 text-white/70">
+            <li><a href="#juegos" class="hover:text-white">Juegos</a></li>
+            <li><a href="#hardware" class="hover:text-white">Hardware</a></li>
+            <li><a href="#beneficios" class="hover:text-white">Beneficios</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold">Contacto</h4>
+          <ul class="mt-2 space-y-1 text-white/70">
+            <li>Soporte 24/7</li>
+            <li><a href="mailto:hola@gamerland.mx" class="hover:text-white">hola@gamerland.mx</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- FOOTER -->
-<footer id="contacto" class="border-t border-white/10 mt-8" data-anim="fade-up">
-  <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
-    <div>
-      <div class="font-extrabold tracking-wide text-lg">GAMERLAND</div>
-      <p class="text-white/60 text-sm mt-3">© {{ now|date:"Y" }} Gamerland. Todos los derechos reservados.</p>
-    </div>
-    <div>
-      <h4 class="font-semibold">Sitio</h4>
-      <ul class="mt-2 space-y-1 text-white/70">
-        <li><a href="#juegos" class="hover:text-white">Juegos</a></li>
-        <li><a href="#hardware" class="hover:text-white">Hardware</a></li>
-        <li><a href="#beneficios" class="hover:text-white">Beneficios</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="font-semibold">Contacto</h4>
-      <ul class="mt-2 space-y-1 text-white/70">
-        <li>Soporte 24/7</li>
-        <li><a href="mailto:hola@gamerland.mx" class="hover:text-white">hola@gamerland.mx</a></li>
-      </ul>
-    </div>
+    </footer>
   </div>
-</footer>
 
-{% endblock %}
+  <!-- Fondo: periféricos neon cayendo -->
+  <script>
+  (function(){
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canvas = document.getElementById('bg-peripherals');
+    if(!canvas || prefersReduced) return;
 
-{% block extra_js %}
-<script>
+    const ctx = canvas.getContext('2d');
+    const DPR_MAX = 2;
+    let dpr = Math.min(window.devicePixelRatio || 1, DPR_MAX);
+
+    function fit(){
+      const w = window.innerWidth, h = window.innerHeight;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.position = 'fixed';
+      canvas.style.inset = '0';
+      canvas.style.width = w+'px';
+      canvas.style.height = h+'px';
+      canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = '0';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.clearRect(0,0,w,h);
+    }
+    fit();
+    window.addEventListener('resize', fit, {passive:true});
+
+    const COLORS = [
+      'rgba(110,168,255,0.32)',
+      'rgba(187,107,217,0.30)',
+      'rgba(255,134,200,0.28)',
+      'rgba(59,130,246,0.28)',
+      'rgba(168,85,247,0.28)',
+      'rgba(52,211,153,0.26)'
+    ];
+
+    function shapeGamepad(){
+      const p = new Path2D();
+      p.moveTo(-24,0); p.bezierCurveTo(-18,-10,18,-10,24,0);
+      p.bezierCurveTo(18,10,-18,10,-24,0);
+      p.moveTo(8,-2); p.arc(8,-2,1.2,0,Math.PI*2);
+      p.moveTo(12,1); p.arc(12,1,1.2,0,Math.PI*2);
+      p.moveTo(8,4); p.arc(8,4,1.2,0,Math.PI*2);
+      p.moveTo(4,1); p.arc(4,1,1.2,0,Math.PI*2);
+      p.rect(-10,-1.5,6,3);
+      p.rect(-8.5,-3,3,6);
+      p.moveTo(-2,0); p.arc(-2,0,2,0,Math.PI*2);
+      p.moveTo(2,0);  p.arc(2,0,2,0,Math.PI*2);
+      return p;
+    }
+
+    function shapeKeyboard(){
+      const p = new Path2D();
+      p.rect(-24,-8,48,16);
+      for(let y=-5; y<=3; y+=4){
+        for(let x=-20; x<=20; x+=6){
+          p.rect(x,y,4,2.5);
+        }
+      }
+      return p;
+    }
+
+    function shapeMouse(){
+      const p = new Path2D();
+      p.moveTo(0,-14); p.bezierCurveTo(9,-14,14,-7,14,0);
+      p.bezierCurveTo(14,10,8,14,0,14);
+      p.bezierCurveTo(-8,14,-14,10,-14,0);
+      p.bezierCurveTo(-14,-7,-9,-14,0,-14);
+      p.rect(-1, -6, 2, 6);
+      return p;
+    }
+
+    function shapeHeadset(){
+      const p = new Path2D();
+      p.moveTo(-18,2); p.bezierCurveTo(-18,-12,18,-12,18,2);
+      p.rect(-22,2,6,12);
+      p.rect(16,2,6,12);
+      p.moveTo(-16,10); p.bezierCurveTo(-10,16,-2,16,2,14);
+      return p;
+    }
+
+    const SHAPES = [shapeGamepad(), shapeKeyboard(), shapeMouse(), shapeHeadset()];
+
+    const W = () => window.innerWidth;
+    const H = () => window.innerHeight;
+    const DENSITY = 70000;
+    const COUNT = Math.max(18, Math.floor((W()*H())/DENSITY));
+    const items = [];
+
+    function spawn(n=COUNT){
+      for(let i=0;i<n;i++){
+        const scale = 0.8 + Math.random()*1.2;
+        const vy = 0.35 + Math.random()*0.9;
+        const vx = (Math.random()*0.5 - 0.25);
+        const rot = Math.random()*Math.PI*2;
+        const vr = (Math.random()*0.01 - 0.005);
+        const color = COLORS[(Math.random()*COLORS.length)|0];
+        const shape = SHAPES[(Math.random()*SHAPES.length)|0];
+        items.push({
+          x: Math.random()*W(),
+          y: Math.random()*-H(),
+          scale,
+          vy,
+          vx,
+          rot,
+          vr,
+          color,
+          shape,
+          glow: color
+        });
+      }
+    }
+    spawn();
+
+    function drawItem(it){
+      ctx.save();
+      ctx.translate(it.x, it.y);
+      ctx.rotate(it.rot);
+      ctx.scale(it.scale, it.scale);
+
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = 'rgba(255,255,255,0.35)';
+      ctx.shadowBlur = 16;
+      ctx.shadowColor = it.glow;
+      ctx.stroke(it.shape);
+
+      ctx.shadowBlur = 24;
+      ctx.strokeStyle = it.color;
+      ctx.stroke(it.shape);
+
+      ctx.restore();
+    }
+
+    let raf = null, last=0;
+    function loop(t){
+      if(!last) last = t;
+      const dt = Math.min((t - last)/16.666, 2.5);
+      last = t;
+
+      const w = W(), h = H();
+      ctx.clearRect(0,0,w,h);
+
+      for(const it of items){
+        it.x += it.vx * dt;
+        it.y += it.vy * dt;
+        it.rot += it.vr * dt;
+        drawItem(it);
+
+        if(it.y > h + 30){
+          it.y = -30 - Math.random()*h*0.3;
+          it.x = Math.random()*w;
+        }
+        if(it.x < -40) it.x = w+40;
+        if(it.x > w+40) it.x = -40;
+      }
+
+      raf = requestAnimationFrame(loop);
+    }
+    raf = requestAnimationFrame(loop);
+
+    document.addEventListener('visibilitychange', ()=>{
+      if(document.hidden && raf){
+        cancelAnimationFrame(raf);
+        raf=null;
+      } else if(!raf){
+        last=0;
+        raf=requestAnimationFrame(loop);
+      }
+    });
+  })();
+  </script>
+
+  <!-- Scripts de interacción de la landing -->
+  <script>
 /* Carrusel */
 (function(){
   const root = document.querySelector('#carousel'); if(!root) return;
@@ -559,6 +769,7 @@
       formWrap?.classList.add('hidden');
       shown = Math.max(shown, PAGE);
       render(items);
+      form.reset();
     });
   }
 
@@ -579,8 +790,7 @@
     save(demo); render(demo);
   } else { render(init); }
 })();
-</script>
-{% endblock %}
+  </script>
 
-(venv) gall@gall-HP:~/GamerLand$ 
-
+</body>
+</html>
